@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-gray-50">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer & Earn - Backcash Dashboard</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff3f0',
+                            100: '#ffe4dd',
+                            400: '#FF8A65',
+                            500: '#FF7043',
+                            600: '#f9512d',
+                            900: '#752210',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.05)',
+                        'card': '0 20px 40px -15px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .glass-card {
+                @apply bg-white/95 backdrop-blur-lg shadow-card border border-white/80;
+            }
+            /* Custom active state for sidebar links */
+            .sidebar-link-active {
+                @apply bg-brand-50 text-brand-600 font-bold;
+            }
+            .sidebar-link-inactive {
+                @apply text-slate-500 hover:bg-gray-50 hover:text-slate-900 font-medium;
+            }
+        }
+        
+        /* Hide scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased selection:bg-brand-500 selection:text-white flex h-screen overflow-hidden">
+
+    <!-- Desktop Sidebar (Hidden on mobile) -->
+    <aside class="hidden md:flex flex-col w-64 bg-white border-r border-gray-100 h-full flex-shrink-0 relative z-20">
+        <!-- Logo Area -->
+        <div class="h-20 flex items-center px-6 border-b border-gray-50">
+            <a href="dashboard-home.html" class="flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-brand-400 to-orange-500 rounded-xl flex items-center justify-center text-white shadow-sm">
+                    <i data-lucide="wallet" class="w-6 h-6"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Backcash</span>
+            </a>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-1 no-scrollbar">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-3">Menu</div>
+
+            <a href="dashboard-home.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="dashboard-cashback.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="search" class="w-5 h-5"></i>
+                <span>Cashback Home</span>
+            </a>
+
+            <a href="dashboard-withdraw.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="arrow-down-to-line" class="w-5 h-5"></i>
+                <span>Withdraw</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="receipt" class="w-5 h-5"></i>
+                <span>Transactions</span>
+            </a>
+
+            <a href="dashboard-products.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                <span>Top Products</span>
+            </a>
+
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 mt-8 px-3">Community</h3>
+
+            <a href="dashboard-leaderboard.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="trophy" class="w-5 h-5"></i>
+                <span>Leaderboard</span>
+            </a>
+
+            <a href="dashboard-referral.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-active transition-colors">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Refer & Earn</span>
+            </a>
+
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 mt-8 px-3">Account</div>
+
+            <a href="dashboard-profile.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span>Profile</span>
+            </a>
+
+            <a href="dashboard-payment.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="credit-card" class="w-5 h-5"></i>
+                <span>Payment Methods</span>
+            </a>
+
+            <a href="dashboard-about.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="info" class="w-5 h-5"></i>
+                <span>About Platform</span>
+            </a>
+        </div>
+
+        <!-- Bottom Settings/Help -->
+        <div class="p-4 border-t border-gray-50">
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="settings" class="w-5 h-5"></i>
+                <span>Settings</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl sidebar-link-inactive transition-colors">
+                <i data-lucide="life-buoy" class="w-5 h-5"></i>
+                <span>Help Center</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col h-full bg-slate-50 relative overflow-hidden">
+
+        <!-- Top Header (Desktop & Mobile) -->
+        <header
+            class="h-20 bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between px-6 z-10 flex-shrink-0">
+            <!-- Mobile Logo (Visible only on mobile) -->
+            <div class="md:hidden flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-br from-brand-400 to-orange-500 rounded-lg flex items-center justify-center text-white shadow-sm">
+                    <i data-lucide="wallet" class="w-4 h-4"></i>
+                </div>
+            </div>
+
+            <!-- Page Title (Desktop only) -->
+            <div class="hidden md:flex max-w-md w-full relative items-center">
+                <h1 class="text-xl font-bold text-slate-900">Refer & Earn</h1>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-3 md:gap-5 flex-1 justify-end">
+
+                <!-- Balance Badge (Hidden on very small screens) -->
+                <div
+                    class="hidden sm:flex items-center gap-2 bg-green-50 px-3 py-1.5 rounded-full border border-green-100">
+                    <i data-lucide="coins" class="w-4 h-4 text-green-600"></i>
+                    <span class="font-bold text-green-700 text-sm">$340.50</span>
+                </div>
+
+                <!-- Notifications -->
+                <button
+                    class="relative w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-gray-100 focus:outline-none transition-colors">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span
+                        class="absolute top-2 right-2.5 w-2 h-2 bg-brand-500 rounded-full border-2 border-white"></span>
+                </button>
+
+                <!-- Avatar Dropdown -->
+                <button class="flex items-center gap-2 focus:outline-none pl-2 border-l border-gray-200">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="User Avatar"
+                        class="w-9 h-9 rounded-full border-2 border-white shadow-sm box-content">
+                    <div class="hidden md:block text-left">
+                        <div class="text-sm font-bold text-slate-900 leading-tight">Alex Mitchell</div>
+                        <div class="text-[11px] text-slate-500 font-medium">Free Member</div>
+                    </div>
+                    <i data-lucide="chevron-down" class="hidden md:block w-4 h-4 text-slate-400"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Page Content Scrollable Area -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8 no-scrollbar relative">
+
+            <div class="max-w-5xl mx-auto space-y-6">
+
+                <!-- Share Hero Banner -->
+                <div
+                    class="bg-gradient-to-br from-brand-500 to-orange-400 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-lg shadow-brand-500/20">
+                    <!-- Abstract circles -->
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay filter blur-xl transform translate-x-1/2 -translate-y-1/2">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-48 h-48 bg-white/20 rounded-full mix-blend-overlay filter blur-2xl transform -translate-x-1/2 translate-y-1/2">
+                    </div>
+
+                    <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <div
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-4 backdrop-blur-sm">
+                                <i data-lucide="gift" class="w-4 h-4"></i>
+                                LIMITED TIME
+                            </div>
+                            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight tracking-tight">Give $10,
+                                <br> Get $25.</h2>
+                            <p class="text-brand-50 text-lg mb-0 font-medium opacity-90">Invite your friends. When they
+                                make their first qualifying purchase, you both get a cash bonus!</p>
+                        </div>
+
+                        <!-- Copy Link Block -->
+                        <div class="bg-white rounded-2xl p-6 shadow-xl w-full">
+                            <h3 class="text-slate-900 font-bold mb-3">Your unique referral link</h3>
+                            <div class="flex items-center bg-gray-50 border border-gray-200 rounded-xl p-1 mb-4">
+                                <input type="text" value="https://backcash.com/invite/alexm24"
+                                    class="bg-transparent flex-1 px-3 text-slate-600 font-medium outline-none text-sm"
+                                    readonly>
+                                <button
+                                    class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors">Copy</button>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">Share
+                                    via</span>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-100 transition-colors tooltip"><i
+                                        data-lucide="message-circle" class="w-5 h-5"></i></button>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center hover:bg-indigo-100 transition-colors tooltip"><i
+                                        data-lucide="facebook" class="w-5 h-5"></i></button>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-sky-50 text-sky-500 flex items-center justify-center hover:bg-sky-100 transition-colors tooltip"><i
+                                        data-lucide="twitter" class="w-5 h-5"></i></button>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-gray-100 text-slate-600 flex items-center justify-center hover:bg-gray-200 transition-colors tooltip"><i
+                                        data-lucide="mail" class="w-5 h-5"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Referral Statistics -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-3xl shadow-soft border border-gray-100">
+                        <div
+                            class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="dollar-sign" class="w-6 h-6"></i>
+                        </div>
+                        <div class="text-slate-500 text-sm font-medium mb-1">Total Earned</div>
+                        <div class="text-3xl font-extrabold text-slate-900">$125.00</div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl shadow-soft border border-gray-100">
+                        <div
+                            class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <div class="text-slate-500 text-sm font-medium mb-1">Friends Joined</div>
+                        <div class="text-3xl font-extrabold text-slate-900">8</div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl shadow-soft border border-gray-100">
+                        <div
+                            class="w-12 h-12 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="clock" class="w-6 h-6"></i>
+                        </div>
+                        <div class="text-slate-500 text-sm font-medium mb-1">Pending Bonuses</div>
+                        <div class="text-3xl font-extrabold text-slate-900">$75.00 <span
+                                class="text-sm text-slate-400 font-medium">/ 3 friends</span></div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+
+                    <!-- How it works -->
+                    <div class="md:col-span-1 bg-white rounded-3xl p-6 shadow-soft border border-gray-100">
+                        <h3 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                            <i data-lucide="info" class="w-5 h-5 text-slate-400"></i>
+                            How it works
+                        </h3>
+
+                        <div class="relative border-l-2 border-dashed border-gray-200 ml-4 space-y-8 py-2">
+
+                            <!-- Step 1 -->
+                            <div class="relative pl-6">
+                                <div
+                                    class="absolute -left-[11px] top-0.5 w-5 h-5 bg-white border-2 border-brand-500 rounded-full">
+                                </div>
+                                <h4 class="font-bold text-slate-900 text-sm">Send Invite</h4>
+                                <p class="text-sm text-slate-500 mt-1">Share your link via message or social media.</p>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="relative pl-6">
+                                <div
+                                    class="absolute -left-[11px] top-0.5 w-5 h-5 bg-white border-2 border-blue-500 rounded-full">
+                                </div>
+                                <h4 class="font-bold text-slate-900 text-sm">Friend Shops</h4>
+                                <p class="text-sm text-slate-500 mt-1">They must create an account and spend $25 within
+                                    30 days.</p>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="relative pl-6">
+                                <div
+                                    class="absolute -left-[11px] top-0.5 w-5 h-5 bg-white border-2 border-green-500 rounded-full">
+                                </div>
+                                <h4 class="font-bold text-slate-900 text-sm">Get Paid!</h4>
+                                <p class="text-sm text-slate-500 mt-1">Both of your accounts get credited 48h after
+                                    purchase confirmation.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- History / List -->
+                    <div class="md:col-span-2 bg-white rounded-3xl p-6 shadow-soft border border-gray-100">
+                        <h3 class="font-bold text-slate-900 mb-6 flex items-center justify-between">
+                            <span>Your Referrals</span>
+                            <span class="text-sm font-medium text-slate-500 bg-gray-50 px-3 py-1 rounded-full">8
+                                Total</span>
+                        </h3>
+
+                        <div class="space-y-4">
+
+                            <!-- Item 1 (Pending) -->
+                            <div
+                                class="flex items-center justify-between p-4 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                                        TM</div>
+                                    <div>
+                                        <div class="font-bold text-slate-900 text-sm">Tom Miller</div>
+                                        <div class="text-xs text-slate-500">Joined Oct 24</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div
+                                        class="inline-flex items-center gap-1.5 bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-xs font-bold mb-1">
+                                        <div class="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                                        Pending
+                                    </div>
+                                    <div class="text-xs text-slate-400">Awaiting purchase</div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 (Completed) -->
+                            <div
+                                class="flex items-center justify-between p-4 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                                        JS</div>
+                                    <div>
+                                        <div class="font-bold text-slate-900 text-sm">Jane Smith</div>
+                                        <div class="text-xs text-slate-500">Joined Oct 12</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div
+                                        class="inline-flex items-center gap-1.5 bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-bold mb-1">
+                                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                                        Completed
+                                    </div>
+                                    <div class="text-xs text-green-600 font-bold">+$25.00</div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 (Completed) -->
+                            <div
+                                class="flex items-center justify-between p-4 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                                        EK</div>
+                                    <div>
+                                        <div class="font-bold text-slate-900 text-sm">Elena Kuris</div>
+                                        <div class="text-xs text-slate-500">Joined Sep 28</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div
+                                        class="inline-flex items-center gap-1.5 bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-bold mb-1">
+                                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                                        Completed
+                                    </div>
+                                    <div class="text-xs text-green-600 font-bold">+$25.00</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <button class="text-sm font-bold text-brand-600 hover:text-brand-700">View All Log</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation (Visible only on mobile) -->
+    <div class="md:hidden fixed bottom-6 left-4 right-4 z-50">
+        <div
+            class="bg-white/95 backdrop-blur-xl border border-gray-100 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] rounded-3xl p-2 flex justify-between items-center px-4">
+
+            <a href="dashboard-home.html"
+                class="flex flex-col items-center justify-center w-12 h-12 text-slate-400 hover:text-slate-900 transition-colors">
+                <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+            </a>
+
+            <a href="dashboard-cashback.html"
+                class="flex flex-col items-center justify-center w-12 h-12 text-slate-400 hover:text-slate-900 transition-colors">
+                <i data-lucide="search" class="w-6 h-6"></i>
+            </a>
+
+            <a href="dashboard-leaderboard.html"
+                class="flex flex-col items-center justify-center w-12 h-12 text-slate-400 hover:text-slate-900 transition-colors">
+                <i data-lucide="trophy" class="w-6 h-6"></i>
+            </a>
+
+            <!-- Central Active Action (Referral) -->
+            <a href="dashboard-referral.html"
+                class="flex flex-col items-center justify-center w-14 h-14 bg-brand-500 rounded-full text-white shadow-lg -translate-y-4">
+                <i data-lucide="users" class="w-6 h-6"></i>
+            </a>
+
+            <a href="dashboard-profile.html"
+                class="flex flex-col items-center justify-center w-12 h-12 text-slate-400 hover:text-slate-900 transition-colors">
+                <i data-lucide="user" class="w-6 h-6"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backcash - Earn Cashback Everywhere</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff3f0',
+                            100: '#ffe4dd',
+                            400: '#FF8A65',
+                            500: '#FF7043',
+                            600: '#f9512d',
+                            900: '#752210',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.05)',
+                        'card': '0 20px 40px -15px rgba(0,0,0,0.08)',
+                        'float': '0 25px 50px -12px rgba(0,0,0,0.15)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 2s infinite',
+                        'float-fast': 'float 4.5s ease-in-out 1s infinite',
+                        'bounce-x': 'bounce-x 1s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'bounce-x': {
+                            '0%, 100%': {
+                                transform: 'translateX(-25%)',
+                                animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)'
+                            },
+                            '50%': {
+                                transform: 'none',
+                                animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .glass-card {
+                @apply bg-white/95 backdrop-blur-lg shadow-card border border-white/80;
+            }
+            .text-gradient {
+                @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-orange-500;
+            }
+            .text-gradient-light {
+                @apply text-transparent bg-clip-text bg-gradient-to-r from-white to-brand-100;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-brand-400 to-orange-500 rounded-xl flex items-center justify-center text-white shadow-sm">
+                    <i data-lucide="wallet" class="w-6 h-6"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Backcash</span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#how-it-works" class="hover:text-brand-600 transition-colors">How it works</a>
+                <a href="#brands" class="hover:text-brand-600 transition-colors">Stores</a>
+                <a href="#categories" class="hover:text-brand-600 transition-colors">Categories</a>
+                <a href="leaderboard.html" class="hover:text-brand-600 transition-colors">Leaderboard</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#"
+                    class="hidden sm:block font-medium text-slate-600 hover:text-brand-600 transition-colors">Log in</a>
+                <a href="#"
+                    class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">Sign
+                    up free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section
+        class="relative pt-32 lg:pt-40 pb-32 lg:pb-48 overflow-hidden bg-gradient-to-br from-brand-400 to-orange-400">
+        <!-- Abstract gradient blobs behind hero -->
+        <div
+            class="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-300 rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-float-delayed">
+        </div>
+        <div
+            class="absolute -bottom-32 -left-32 w-[600px] h-[600px] bg-rose-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-50 animate-float">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                <!-- Left Text -->
+                <div class="max-w-2xl">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-semibold mb-6">
+                        <span class="flex h-2 w-2 rounded-full bg-green-400"></span>
+                        Trusted by 55M+ Shoppers
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
+                        Earn Cashback on <br />
+                        <span class="text-gradient-light">Every Purchase.</span>
+                    </h1>
+                    <p class="text-lg lg:text-xl text-white/90 mb-8 max-w-lg leading-relaxed font-medium">
+                        Shop your favorite brands and get money back automatically. The smarter way to shop, travel, and
+                        eat.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#"
+                            class="bg-white text-brand-600 px-8 py-4 rounded-full font-bold text-lg shadow-float hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                            Start Earning Now
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/30 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 text-center flex items-center justify-center gap-2">
+                            <i data-lucide="play-circle" class="w-5 h-5"></i>
+                            See how it works
+                        </a>
+                    </div>
+
+                    <div class="mt-10 flex items-center gap-4 text-white/80 text-sm font-medium">
+                        <div class="flex -space-x-3">
+                            <img src="https://i.pravatar.cc/100?img=1"
+                                class="w-10 h-10 rounded-full border-2 border-brand-500" alt="User">
+                            <img src="https://i.pravatar.cc/100?img=2"
+                                class="w-10 h-10 rounded-full border-2 border-brand-500" alt="User">
+                            <img src="https://i.pravatar.cc/100?img=3"
+                                class="w-10 h-10 rounded-full border-2 border-brand-500" alt="User">
+                            <img src="https://i.pravatar.cc/100?img=4"
+                                class="w-10 h-10 rounded-full border-2 border-brand-500" alt="User">
+                            <div
+                                class="w-10 h-10 rounded-full border-2 border-brand-500 bg-white text-brand-600 flex items-center justify-center text-xs font-bold">
+                                +2k</div>
+                        </div>
+                        <p>Joined this week</p>
+                    </div>
+                </div>
+
+                <!-- Right Visuals/Illustrations -->
+                <div class="relative h-[500px] lg:h-[600px] w-full hidden md:flex items-center justify-center">
+                    <!-- Wrapper for central grouping to prevent layout skew -->
+                    <div class="relative w-[340px] h-[480px]">
+                        <!-- Main UI Card Representation -->
+                        <div style="top:20%"
+                            class="absolute inset-x-0 top-1/2 -translate-y-1/2 max-w-[320px] mx-auto bg-white rounded-[2rem] p-6 shadow-2xl z-20 animate-float">
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-10 h-10 bg-brand-50 rounded-full flex items-center justify-center text-brand-600">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-slate-500 font-medium">Total Cashback</div>
+                                        <div class="text-xl font-bold text-slate-900">$1,245.50</div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-100 text-green-700 font-bold text-xs px-2 py-1 rounded-full">+12%
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <!-- item: Shopee -->
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-2xl">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center">
+                                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Shopee Mall</div>
+                                            <div class="text-xs text-slate-500">Shopee</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-sm font-bold text-green-600">+$45.20</div>
+                                    </div>
+                                </div>
+
+                                <!-- item: Lazada -->
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-2xl">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                                            <i data-lucide="package" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Electronics</div>
+                                            <div class="text-xs text-slate-500">Lazada</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-sm font-bold text-green-600">+$12.50</div>
+                                    </div>
+                                </div>
+
+                                <!-- item: TiktokShop -->
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-2xl">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 bg-slate-200 text-slate-800 rounded-xl flex items-center justify-center">
+                                            <i data-lucide="smartphone" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Beauty</div>
+                                            <div class="text-xs text-slate-500">TiktokShop</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-sm font-bold text-green-600">+$4.80</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <button
+                                    class="w-full bg-slate-900 text-white py-3 rounded-xl font-semibold text-sm hover:bg-slate-800 transition-colors">Withdraw
+                                    to Bank</button>
+                            </div>
+                        </div>
+
+                        <!-- Floating financial elements repositioned to relative container -->
+                        <div
+                            class="absolute top-10 -right-4 lg:-right-10 w-24 h-24 bg-white rounded-2xl shadow-xl flex items-center justify-center z-10 animate-float-delayed -rotate-6">
+                            <div class="text-center">
+                                <div class="text-brand-600 font-bold text-xl">15%</div>
+                                <div class="text-[10px] text-slate-500 font-semibold uppercase">Cashback</div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="absolute bottom-12 -left-6 lg:-left-12 w-20 h-20 bg-emerald-100 rounded-2xl shadow-xl flex items-center justify-center z-30 animate-float-fast rotate-12 border border-emerald-200">
+                            <i data-lucide="dollar-sign" class="w-10 h-10 text-emerald-600"></i>
+                        </div>
+
+                        <div
+                            class="absolute top-[30%] -left-8 lg:-left-16 w-16 h-16 bg-yellow-100 rounded-full shadow-lg flex items-center justify-center z-10 animate-float border-2 border-yellow-300">
+                            <i data-lucide="coins" class="w-8 h-8 text-yellow-600"></i>
+                        </div>
+
+                        <div
+                            class="absolute bottom-20 -right-6 lg:-right-8 w-28 h-auto bg-white rounded-2xl shadow-xl p-3 z-30 animate-float-delayed rotate-3">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-lucide="bell-ring" class="w-4 h-4 text-brand-500"></i>
+                                <span class="text-[10px] font-bold text-slate-700">New Reward!</span>
+                            </div>
+                            <div class="text-sm font-bold text-green-600">+$25.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Social Proof Stats Section -->
+    <section class="max-w-6xl mx-auto px-6 relative -mt-16 lg:-mt-24 z-20">
+        <div class="glass-card rounded-[2rem] p-8 md:p-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-gray-100">
+
+                <div class="text-center px-4">
+                    <div class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 tracking-tight">55M+</div>
+                    <div class="text-sm md:text-base text-slate-500 font-medium">Happy Users</div>
+                </div>
+
+                <div class="text-center px-4">
+                    <div class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 tracking-tight">20K+</div>
+                    <div class="text-sm md:text-base text-slate-500 font-medium">Partner Stores</div>
+                </div>
+
+                <div class="text-center px-4">
+                    <div class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 tracking-tight">85M</div>
+                    <div class="text-sm md:text-base text-slate-500 font-medium">Yearly Purchases</div>
+                </div>
+
+                <div class="text-center px-4">
+                    <div class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2 tracking-tight">$650M</div>
+                    <div class="text-sm md:text-base text-slate-500 font-medium">Cashback Paid</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 3. Featured Brands -->
+    <section id="brands" class="py-20 lg:py-28 bg-slate-50">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- heading -->
+            <div class="text-center mb-16">
+
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                    Featured Brands
+                </h2>
+
+                <p class="text-lg text-slate-500 max-w-2xl mx-auto">
+                    Earn the highest cashback rates from your favorite stores today.
+                </p>
+
+            </div>
+
+
+            <!-- Carousel wrapper -->
+            <div class="relative">
+
+                <!-- arrows -->
+                <button id="brandPrev"
+                    class="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-gray-200 shadow items-center justify-center hover:shadow-md transition">
+
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+
+                </button>
+
+                <button id="brandNext"
+                    class="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-gray-200 shadow items-center justify-center hover:shadow-md transition">
+
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+
+                </button>
+
+
+                <!-- carousel -->
+                <div id="brandCarousel"
+                    class="flex overflow-x-auto px-2 md:px-4 pb-8 scrollbar-hide snap-x snap-mandatory gap-6 scroll-smooth">
+
+
+                    <!-- Shopee -->
+                    <a href="#"
+                        class="relative min-w-[260px] shrink-0 snap-start bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-lg transition flex flex-col">
+
+                        <div
+                            class="absolute -top-3 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
+
+                            <i data-lucide="trending-up" class="w-3 h-3"></i>
+                            Upsized Cashback
+
+                        </div>
+
+                        <div
+                            class="w-full h-32 bg-[#FF5722] rounded-[14px] flex items-center justify-center mb-5 shadow-inner">
+
+                            <span class="text-white font-extrabold text-2xl">Shopee</span>
+
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+
+                            <div class="text-sm text-slate-500">Shopee</div>
+
+                            <div class="font-bold text-lg text-slate-900">
+                                Cashback up to 15%
+                            </div>
+
+                            <div class="text-sm text-slate-400 line-through">
+                                Was 8%
+                            </div>
+
+                            <div
+                                class="mt-2 text-xs font-semibold text-orange-600 bg-orange-50 px-3 py-1 rounded-lg w-fit">
+
+                                Ends in 8 hours
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- Lazada -->
+                    <a href="#"
+                        class="relative min-w-[260px] shrink-0 snap-start bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-lg transition flex flex-col">
+
+                        <div
+                            class="w-full h-32 bg-gradient-to-br from-[#0F146D] to-[#FF0A54] rounded-[14px] flex items-center justify-center mb-5">
+
+                            <span class="text-white font-extrabold text-2xl italic">
+                                Lazada
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-sm text-slate-500 mb-1">
+                                Lazada
+                            </div>
+
+                            <div class="font-bold text-lg text-slate-900">
+                                Cashback up to 12%
+                            </div>
+
+                            <div class="text-sm text-slate-400">
+                                Everyday rate
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- Agoda -->
+                    <a href="#"
+                        class="relative min-w-[260px] shrink-0 snap-start bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-lg transition flex flex-col">
+
+                        <div
+                            class="absolute -top-3 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+
+                            Hot Deal
+
+                        </div>
+
+                        <div class="w-full h-32 bg-gray-100 rounded-[14px] flex items-center justify-center mb-5">
+
+                            <span class="text-blue-600 font-extrabold text-2xl">
+                                agoda
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-sm text-slate-500">
+                                Agoda
+                            </div>
+
+                            <div class="font-bold text-lg text-slate-900">
+                                Cashback up to 8%
+                            </div>
+
+                            <div class="text-sm text-slate-400 line-through">
+                                Was 4%
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- Traveloka -->
+                    <a href="#"
+                        class="relative min-w-[260px] shrink-0 snap-start bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-lg transition flex flex-col">
+
+                        <div class="w-full h-32 bg-[#1BA0E2] rounded-[14px] flex items-center justify-center mb-5">
+
+                            <span class="text-white font-extrabold text-xl">
+                                traveloka
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-sm text-slate-500">
+                                Traveloka
+                            </div>
+
+                            <div class="font-bold text-lg text-slate-900">
+                                Cashback up to 6.5%
+                            </div>
+
+                            <div class="text-sm text-slate-400">
+                                Flights & Hotels
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- TikTok -->
+                    <a href="#"
+                        class="relative min-w-[260px] shrink-0 snap-start bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-lg transition flex flex-col">
+
+                        <div
+                            class="absolute -top-3 left-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+
+                            New Store
+
+                        </div>
+
+                        <div class="w-full h-32 bg-slate-900 rounded-[14px] flex items-center justify-center mb-5">
+
+                            <span class="text-white font-bold text-xl">
+                                TikTok Shop
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-sm text-slate-500">
+                                TikTok Shop
+                            </div>
+
+                            <div class="font-bold text-lg text-slate-900">
+                                Cashback up to 10%
+                            </div>
+
+                            <div class="text-sm text-slate-400">
+                                No cap limit
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+
+    <script>
+
+        const carousel = document.getElementById("brandCarousel")
+
+        document.getElementById("brandNext").onclick = () => {
+            carousel.scrollBy({ left: 320, behavior: "smooth" })
+        }
+
+        document.getElementById("brandPrev").onclick = () => {
+            carousel.scrollBy({ left: -320, behavior: "smooth" })
+        }
+
+    </script>
+
+    <!-- 4. Categories Section -->
+    <section id="categories" class="py-20 lg:py-28 relative bg-white">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                    Earn in every category
+                </h2>
+
+                <p class="text-lg text-slate-500 max-w-2xl mx-auto">
+                    From daily essentials to dream vacations. We've got you covered.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+
+                <!-- Shopping -->
+                <div
+                    class="group relative bg-white rounded-[2rem] p-8 text-center transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.15)] hover:-translate-y-2 cursor-pointer border border-gray-100 overflow-hidden flex flex-col items-center">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+
+                    <div
+                        class="relative w-20 h-20 bg-blue-50 group-hover:bg-blue-600 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 shadow-sm group-hover:shadow-blue-200">
+                        <i data-lucide="shopping-bag"
+                            class="w-10 h-10 text-blue-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+
+                    <h3
+                        class="relative font-bold text-slate-900 text-xl mb-2 group-hover:text-blue-600 transition-colors">
+                        Shopping</h3>
+                    <p class="relative text-sm text-slate-500">Clothing, tech, home</p>
+                </div>
+
+                <!-- Travel -->
+                <div
+                    class="group relative bg-white rounded-[2rem] p-8 text-center transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.15)] hover:-translate-y-2 cursor-pointer border border-gray-100 overflow-hidden flex flex-col items-center">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+
+                    <div
+                        class="relative w-20 h-20 bg-emerald-50 group-hover:bg-emerald-600 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 shadow-sm group-hover:shadow-emerald-200">
+                        <i data-lucide="plane"
+                            class="w-10 h-10 text-emerald-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+
+                    <h3
+                        class="relative font-bold text-slate-900 text-xl mb-2 group-hover:text-emerald-600 transition-colors">
+                        Travel</h3>
+                    <p class="relative text-sm text-slate-500">Flights & hotels</p>
+                </div>
+
+                <!-- Food -->
+                <div
+                    class="group relative bg-white rounded-[2rem] p-8 text-center transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.15)] hover:-translate-y-2 cursor-pointer border border-gray-100 overflow-hidden flex flex-col items-center">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+
+                    <div
+                        class="relative w-20 h-20 bg-orange-50 group-hover:bg-orange-600 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 shadow-sm group-hover:shadow-orange-200">
+                        <i data-lucide="pizza"
+                            class="w-10 h-10 text-orange-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+
+                    <h3
+                        class="relative font-bold text-slate-900 text-xl mb-2 group-hover:text-orange-600 transition-colors">
+                        Food</h3>
+                    <p class="relative text-sm text-slate-500">Delivery & dining</p>
+                </div>
+
+                <!-- Entertainment -->
+                <div
+                    class="group relative bg-white rounded-[2rem] p-8 text-center transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.15)] hover:-translate-y-2 cursor-pointer border border-gray-100 overflow-hidden flex flex-col items-center">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+
+                    <div
+                        class="relative w-20 h-20 bg-purple-50 group-hover:bg-purple-600 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 shadow-sm group-hover:shadow-purple-200">
+                        <i data-lucide="gamepad-2"
+                            class="w-10 h-10 text-purple-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+
+                    <h3
+                        class="relative font-bold text-slate-900 text-xl mb-2 group-hover:text-purple-600 transition-colors">
+                        Entertainment</h3>
+                    <p class="relative text-sm text-slate-500">Gaming & movies</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Two Column Feature Section -->
+    <section class="py-20 lg:py-28 bg-brand-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Left Feature Block: Shopping Categories -->
+                <div
+                    class="bg-white rounded-[2.5rem] p-10 md:p-14 shadow-sm border border-brand-100 flex flex-col items-center text-center">
+                    <div class="relative w-full max-w-xs aspect-square mb-10 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-blue-100/50 rounded-full blur-3xl"></div>
+                        <!-- Abstract illustration of shopping carts & categories -->
+                        <div class="relative w-full h-full">
+                            <div
+                                class="absolute top-0 right-10 w-24 h-24 bg-white shadow-xl rounded-2xl flex items-center justify-center z-20 animate-float">
+                                <i data-lucide="shopping-bag" class="w-10 h-10 text-brand-500"></i>
+                            </div>
+                            <div
+                                class="absolute bottom-10 left-10 w-28 h-28 bg-white shadow-xl rounded-full flex items-center justify-center z-20 animate-float-delayed">
+                                <i data-lucide="shirt" class="w-12 h-12 text-blue-500"></i>
+                            </div>
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-brand-100 rounded-full flex items-center justify-center z-10 border-4 border-white">
+                                <i data-lucide="store" class="w-16 h-16 text-brand-600"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">Shop 20,000+ Categories</h3>
+                    <p class="text-slate-500 mb-8 leading-relaxed">
+                        From everyday essentials like groceries to high-end electronics and fashion, we have partnered
+                        with all your favorite stores globally and locally.
+                    </p>
+                    <a href="#"
+                        class="inline-flex items-center justify-center gap-2 font-bold text-brand-600 hover:text-white bg-brand-50 hover:bg-brand-600 transition-colors px-8 py-4 rounded-full w-full sm:w-auto">
+                        View All Stores
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <!-- Right Feature Block: Mobile Phone Cashback -->
+                <div
+                    class="bg-white rounded-[2.5rem] p-10 md:p-14 shadow-sm border border-brand-100 flex flex-col items-center text-center">
+                    <div class="relative w-full max-w-xs aspect-square mb-10 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-green-100/50 rounded-full blur-3xl"></div>
+                        <!-- Abstract illustration of Mobile Phone & Cashback -->
+                        <div
+                            class="relative w-48 h-full bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden border-4 border-slate-800 flex flex-col z-20">
+                            <!-- Notch -->
+                            <div
+                                class="w-20 h-5 bg-slate-800 rounded-b-xl mx-auto absolute top-0 left-1/2 -translate-x-1/2">
+                            </div>
+                            <div class="flex-1 bg-gray-50 flex flex-col justify-center px-4">
+                                <div class="bg-white rounded-2xl p-4 shadow-sm mb-4 border border-gray-100">
+                                    <div class="text-[10px] text-slate-500 font-bold uppercase mb-1">Total Balance</div>
+                                    <div class="text-2xl font-black text-brand-500">$340.50</div>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between bg-green-100 text-green-700 p-3 rounded-xl mb-2 text-xs font-bold">
+                                    <span>+ $12.50</span>
+                                    <span>Received</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between bg-green-100 text-green-700 p-3 rounded-xl text-xs font-bold">
+                                    <span>+ $40.00</span>
+                                    <span>Received</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-1/4 right-0 w-20 h-20 bg-white shadow-xl rounded-full flex items-center justify-center z-30 animate-float-fast">
+                            <i data-lucide="coins" class="w-10 h-10 text-yellow-500"></i>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">Watch your money grow</h3>
+                    <p class="text-slate-500 mb-8 leading-relaxed">
+                        Cashback is automatically added to your wallet 24 hours after purchase. Transfer it to your bank
+                        anytime, entirely free.
+                    </p>
+                    <a href="#"
+                        class="inline-flex items-center justify-center gap-2 font-bold text-slate-900 hover:text-white bg-gray-100 hover:bg-slate-900 transition-colors px-8 py-4 rounded-full w-full sm:w-auto">
+                        Learn more
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. How It Works Section -->
+    <section id="how-it-works" class="py-20 lg:py-28 bg-slate-900 text-white relative">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">Earn cash in 3 easy steps</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">No confusing points systems. Just real cash added
+                    straight to your account when you shop.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
+                <!-- Connecting lines -->
+                <div
+                    class="hidden md:block absolute top-12 left-[15%] right-[15%] h-px bg-slate-800 border-t border-dashed border-slate-700 z-0">
+                </div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div
+                        class="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center mb-8 border-[6px] border-slate-900">
+                        <i data-lucide="search" class="w-10 h-10 text-brand-400"></i>
+                    </div>
+                    <div class="text-brand-400 font-bold text-sm tracking-widest uppercase mb-3">Step 1</div>
+                    <h3 class="text-xl font-bold mb-3">Find your store</h3>
+                    <p class="text-slate-400 leading-relaxed">Search for your favorite store on our app or website
+                        before you buy anything.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div
+                        class="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center mb-8 border-[6px] border-slate-900">
+                        <i data-lucide="shopping-bag" class="w-10 h-10 text-orange-400"></i>
+                    </div>
+                    <div class="text-orange-400 font-bold text-sm tracking-widest uppercase mb-3">Step 2</div>
+                    <h3 class="text-xl font-bold mb-3">Shop normally</h3>
+                    <p class="text-slate-400 leading-relaxed">Click through our link and shop on the brand's website
+                        exactly as you usually do.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div
+                        class="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center mb-8 border-[6px] border-slate-900">
+                        <i data-lucide="party-popper" class="w-10 h-10 text-green-400"></i>
+                    </div>
+                    <div class="text-green-400 font-bold text-sm tracking-widest uppercase mb-3">Step 3</div>
+                    <h3 class="text-xl font-bold mb-3">Get paid</h3>
+                    <p class="text-slate-400 leading-relaxed">We get a commission for sending you there, and we share it
+                        with you as cashback!</p>
+                </div>
+            </div>
+
+            <div class="mt-20 flex justify-center">
+                <a href="#"
+                    class="bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-full font-bold shadow-[0_0_30px_-5px_#f9512d] transition-all duration-300 text-center flex items-center gap-2">
+                    Create your free account
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Reward / Earnings CTA Section -->
+    <section class="py-20 lg:py-28 bg-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div
+                class="bg-gradient-to-br from-brand-50 to-orange-50 rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden shadow-sm border border-brand-100">
+                <!-- Abstract BG patterns for CTA card -->
+                <div
+                    class="absolute -top-24 -right-24 w-64 h-64 bg-brand-200 rounded-full mix-blend-multiply opacity-50 filter blur-3xl">
+                </div>
+                <div
+                    class="absolute -bottom-24 -left-24 w-64 h-64 bg-orange-200 rounded-full mix-blend-multiply opacity-50 filter blur-3xl">
+                </div>
+
+                <div class="relative z-10 max-w-2xl mx-auto">
+                    <div
+                        class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-8 animate-bounce-x">
+                        <i data-lucide="wallet" class="w-10 h-10 text-brand-500"></i>
+                    </div>
+
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Ready to make
+                        your money work harder?</h2>
+                    <p class="text-lg text-slate-500 mb-10">Join 55M+ users who are already earning hundreds of dollars
+                        every year just by doing their regular shopping.</p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <input type="email" placeholder="Enter your email address"
+                            class="px-6 py-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-slate-900 w-full sm:w-80 shadow-sm" />
+                        <button
+                            class="bg-brand-600 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-700 transition-colors shadow-lg whitespace-nowrap">
+                            Get Started
+                        </button>
+                    </div>
+                    <p class="text-sm text-slate-400 mt-6 flex items-center justify-center gap-2">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-green-500"></i>
+                        100% Free forever. No credit card required.
+                    </p>
+                </div>
+
+                <!-- Floating money icons on sides -->
+                <div
+                    class="absolute top-1/4 left-10 hidden md:flex w-14 h-14 bg-white rounded-full shadow-md items-center justify-center animate-float text-brand-500 font-bold">
+                    $$</div>
+                <div
+                    class="absolute bottom-1/4 right-10 hidden md:flex w-16 h-16 bg-white rounded-2xl shadow-md items-center justify-center animate-float-delayed text-green-500">
+                    <i data-lucide="coins" class="w-8 h-8"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="bg-slate-50 pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-16">
+                <!-- Branding -->
+                <div class="col-span-2 lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
+                            <i data-lucide="wallet" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-slate-900">Backcash</span>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6 max-w-sm">
+                        The smartest way to shop. Earn real cashback at over 20,000 top brands, both online and
+                        in-store.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-slate-600 hover:text-brand-500 hover:border-brand-500 transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-slate-600 hover:text-brand-500 hover:border-brand-500 transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-slate-600 hover:text-brand-500 hover:border-brand-500 transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">Product</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="#how-it-works" class="hover:text-brand-600 transition-colors">How it works</a></li>
+                        <li><a href="leaderboard.html" class="hover:text-brand-600 transition-colors">Leaderboard</a>
+                        </li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Browser Extension</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Mobile App</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Refer a Friend</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="about.html" class="hover:text-brand-600 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Press</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Missing Cashback</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-sm text-slate-500">
+                    &copy; 2026 Backcash Inc. All rights reserved.
+                </p>
+                <!-- Badges -->
+                <div class="flex items-center gap-4">
+                    <div
+                        class="flex items-center gap-2 text-xs font-bold text-slate-400 bg-white px-3 py-1.5 rounded-lg border border-gray-200">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                        256-BIT ENCRYPTION
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop"
+        class="fixed bottom-8 right-8 z-50 bg-slate-900 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-brand-500 hover:-translate-y-1 transition-all duration-300 opacity-0 pointer-events-none">
+        <i data-lucide="chevron-up" class="w-6 h-6"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                }
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
