@@ -5,11 +5,36 @@ import {
     ShoppingBag,
     Package,
     Smartphone,
-    Music
+    Store,
 } from 'lucide-react';
 import { Link } from '@inertiajs/react';
 
-export default function DashboardCashback() {
+interface TrendingStore {
+    id: number;
+    name: string;
+    slug: string;
+    logo_url: string | null;
+    homepage_url: string | null;
+}
+
+interface Props {
+    trendingStores: TrendingStore[];
+}
+
+function getColorFromName(name: string): string {
+    const colors = [
+        '#FF5722', '#E91E63', '#9C27B0', '#3F51B5',
+        '#2196F3', '#009688', '#4CAF50', '#FF9800',
+        '#795548', '#607D8B',
+    ];
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return colors[Math.abs(hash) % colors.length];
+}
+
+export default function DashboardCashback({ trendingStores = [] }: Props) {
     return (
         <DashboardLayout title="Earn Cashback - Backcash">
             {/* Page Header (Desktop) */}
@@ -19,7 +44,6 @@ export default function DashboardCashback() {
 
             {/* Hero Search Box */}
             <div className="bg-gradient-to-br from-brand-50 to-orange-50 rounded-[2rem] p-8 md:p-12 text-center border border-brand-100 shadow-sm relative overflow-hidden mb-10">
-                {/* Decor */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-brand-200 rounded-full mix-blend-multiply opacity-50 blur-2xl"></div>
                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-orange-200 rounded-full mix-blend-multiply opacity-50 blur-2xl"></div>
 
@@ -39,9 +63,20 @@ export default function DashboardCashback() {
 
                     <div className="flex flex-wrap items-center justify-center gap-3 mt-6 text-sm text-slate-500">
                         <span>Try:</span>
-                        <span className="bg-white px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:border-brand-300 hover:text-brand-600 transition-colors">shopee.vn</span>
-                        <span className="bg-white px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:border-brand-300 hover:text-brand-600 transition-colors">lazada.vn</span>
-                        <span className="bg-white px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:border-brand-300 hover:text-brand-600 transition-colors">tiktok.com</span>
+                        {trendingStores.slice(0, 3).map((store) => (
+                            <span key={store.id} className="bg-white px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:border-brand-300 hover:text-brand-600 transition-colors">
+                                {store.homepage_url
+                                    ? (() => { try { return new URL(store.homepage_url!).hostname.replace('www.', ''); } catch { return store.slug; } })()
+                                    : store.slug}
+                            </span>
+                        ))}
+                        {trendingStores.length === 0 && (
+                            <>
+                                <span className="bg-white px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:border-brand-300 hover:text-brand-600 transition-colors">shopee.vn</span>
+                                <span className="bg-white px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:border-brand-300 hover:text-brand-600 transition-colors">lazada.vn</span>
+                                <span className="bg-white px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:border-brand-300 hover:text-brand-600 transition-colors">tiktok.com</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -53,48 +88,43 @@ export default function DashboardCashback() {
                     <a href="#" className="text-sm font-semibold text-brand-600 hover:text-brand-700">View all stores</a>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    {/* Store Card 1 */}
-                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-100 transition-all cursor-pointer group flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-[#FF5722] rounded-2xl flex items-center justify-center text-white font-extrabold text-xl mb-4 group-hover:-translate-y-1 transition-transform">
-                            S
-                        </div>
-                        <div className="font-bold text-slate-900">Shopee</div>
-                        <div className="text-xs text-slate-500 mb-2">E-commerce</div>
-                        <div className="text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full text-xs">Up to 15%</div>
+                {trendingStores.length > 0 ? (
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                        {trendingStores.map((store) => (
+                            <a
+                                key={store.id}
+                                href={store.homepage_url ?? '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-100 transition-all cursor-pointer group flex flex-col items-center text-center"
+                            >
+                                {store.logo_url ? (
+                                    <div className="w-16 h-16 rounded-2xl mb-4 overflow-hidden flex items-center justify-center bg-gray-50 border border-gray-100 group-hover:-translate-y-1 transition-transform">
+                                        <img
+                                            src={store.logo_url}
+                                            alt={store.name}
+                                            className="w-full h-full object-contain p-1"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-extrabold text-xl mb-4 group-hover:-translate-y-1 transition-transform"
+                                        style={{ backgroundColor: getColorFromName(store.name) }}
+                                    >
+                                        {store.name.charAt(0).toUpperCase()}
+                                    </div>
+                                )}
+                                <div className="font-bold text-slate-900">{store.name}</div>
+                                <div className="text-xs text-slate-500 mb-2 capitalize">{store.slug}</div>
+                            </a>
+                        ))}
                     </div>
-
-                    {/* Store Card 2 */}
-                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-100 transition-all cursor-pointer group flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-[#0F146D] to-[#FF0A54] rounded-2xl flex items-center justify-center text-white font-extrabold text-xl italic mb-4 group-hover:-translate-y-1 transition-transform">
-                            L
-                        </div>
-                        <div className="font-bold text-slate-900">Lazada</div>
-                        <div className="text-xs text-slate-500 mb-2">E-commerce</div>
-                        <div className="text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full text-xs">Up to 12%</div>
+                ) : (
+                    <div className="flex flex-col items-center justify-center py-16 text-slate-400">
+                        <Store className="w-12 h-12 mb-3 opacity-40" />
+                        <p className="text-sm font-medium">No stores available yet.</p>
                     </div>
-
-                    {/* Store Card 3 */}
-                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-100 transition-all cursor-pointer group flex flex-col items-center text-center">
-                        <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-blue-600 font-extrabold text-xl mb-4 group-hover:-translate-y-1 transition-transform">
-                            a
-                        </div>
-                        <div className="font-bold text-slate-900">Agoda</div>
-                        <div className="text-xs text-slate-500 mb-2">Travel</div>
-                        <div className="text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full text-xs">Up to 8%</div>
-                    </div>
-
-                    {/* Store Card 4 */}
-                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-100 transition-all cursor-pointer group flex flex-col items-center text-center relative overflow-hidden">
-                        <div className="absolute -top-4 -right-4 bg-brand-500 text-white text-[10px] font-bold px-6 py-1 rotate-45">HOT</div>
-                        <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-extrabold text-2xl mb-4 group-hover:-translate-y-1 transition-transform">
-                            <Music className="w-6 h-6" />
-                        </div>
-                        <div className="font-bold text-slate-900">TikTok Shop</div>
-                        <div className="text-xs text-slate-500 mb-2">Social</div>
-                        <div className="text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full text-xs">Up to 10%</div>
-                    </div>
-                </div>
+                )}
             </div>
 
             {/* Top Cashback Products */}

@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class PayoutMethod extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'code',
+        'name',
+        'fields_schema',
+        'status',
+    ];
 
     protected function casts(): array
     {
